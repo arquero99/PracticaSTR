@@ -1,0 +1,58 @@
+Compilación y ejecución del ejemplo "pru1.adb"
+==============================================
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gcc -c -g pru1.adb
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gnatbind -x pru1.ali
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gnatlink -g -k -mcpu=cypress -specs ork_specs pru1.ali
+[jgarcia@cajal clase1-progppal]$ tsim-erc32 pru1
+
+ TSIM/ERC32 - remote SPARC simulator, version 1.0.10 (evaluation version)
+
+ Copyright (C) 2001, Gaisler Research - all rights reserved.
+ For latest updates, go to http://www.gaisler.com/
+ Comments or bug-reports to tsim@gaisler.com
+
+libreadline.so.3: cannot open shared object file: No such file or directory
+serial port A on stdin/stdout
+allocated 4096 K RAM memory
+allocated 2048 K ROM memory
+section: .text at 0x2000000, size 111712 bytes
+section: .data at 0x201b460, size 5428 bytes
+tsim> go
+resuming at 0x02000000
+hola
+Program exited normally.
+tsim> quit
+[jgarcia@cajal clase1-progppal]$
+====================================================================
+Compilación y ejecución del ejemplo "pru2.adb"
+==============================================
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gcc -c -g elotro.adb
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gnatbind -x elotro.ali
+
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gcc -c -g paquete.adb
+
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gcc -c -g pru2.adb
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gnatbind -x pru2.ali
+[jgarcia@cajal clase1-progppal]$ sparc-ork-gnatlink -g -k -mcpu=cypress -specs ork_specs pru2.ali
+
+[jgarcia@cajal clase1-progppal]$ tsim-erc32 pru2
+
+ TSIM/ERC32 - remote SPARC simulator, version 1.0.10 (evaluation version)
+
+ Copyright (C) 2001, Gaisler Research - all rights reserved.
+ For latest updates, go to http://www.gaisler.com/
+ Comments or bug-reports to tsim@gaisler.com
+
+libreadline.so.3: cannot open shared object file: No such file or directory
+serial port A on stdin/stdout
+allocated 4096 K RAM memory
+allocated 2048 K ROM memory
+section: .text at 0x2000000, size 112144 bytes
+section: .data at 0x201b610, size 5444 bytes
+tsim> go
+resuming at 0x02000000
+-- parte principal del paquetehola-- soy el otro... se ejecuta paquete.p1 ... se ejecuta paquete.p2
+Program exited normally.
+tsim> quit
+[jgarcia@cajal clase1-progppal]$
+
