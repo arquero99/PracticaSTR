@@ -10,6 +10,10 @@ type Agua_recogida is array (Dia_del_mes) of integer;
 
 type numero_real is digits 4 range 0.0..1000.0; -- coma flotante
 
+function mediaMesDado (mes : Agua_recogida) return float;
+procedure lluviaEntre (x : in Integer; y : in Integer ; numDias : out Integer; mediaDias : out Integer);
+procedure OrdenaBurbuja (mes : in out Agua_recogida);
+
 Enero : Agua_recogida := (15=>20, 16=>40, 17=>30, others=>0);
 Febrero: Agua_recogida := (10=>10, 15=>20, 19=>20, others=>0);
 Marzo: Agua_recogida := (5=>50, 7=>40, 25=>10, others=>0);
@@ -34,7 +38,75 @@ muchoM : integer := 0;
 media: float := 0.0;
 media_aritmetica: numero_real := 0.0;
 
+----------------------------------
+--Funciones ejercicio 3
+----------------------------------
+
+function mediaMesDado (mes: Agua_recogida) return float is 
+mediaMes: float := 0.0;
 begin
+	case mes is
+
+		when Enero => mediaMes := (numero_real(sumaEnero) / numero_real(dia_del_mes'Last));
+
+		when Febrero => mediaMes := (numero_real(sumaFebrero) / numero_real(28));
+
+		when Marzo => mediaMes := (numero_real(sumaMarzo) / numero_real(dia_del_mes'Last));
+
+		when others => Put ("Error en funcion ejercicio 3, valor mes no reconocido");
+
+	end case;
+	
+	return mediaMes;
+end mediaMesDado;
+
+
+procedure lluviaEntre (mes : in Agua_recogida; x : in Dia_del_mes; y : in Dia_del_mes ; numDias : out Integer; mediaDias : out Float) is 
+sumaDias : integer := 0;
+begin
+	numDias:=y-x+1;
+	mediaDias:=0.0;
+	i:=Dia_del_mes(x);
+	
+	loop
+		sumaDias=sumaDias + mes(i);
+		exit when i=Dia_del_mes(y);
+		i=i+1;
+	end loop;
+	mediaDias:= (numero_real(sumaDias) / numero_real(numDias));
+	Put ("Dias de lluvia entre los dias especificados = ");
+  	Put (numero_real'Image(numDias)); New_line;
+	Put ("Media de lluvia entre los dias especificados = ");
+  	Put (numero_real'Image(mediaDias)); New_line;
+
+end lluviaEntre;	
+
+
+procedure OrdenaBurbuja (mes : in out Agua_recogida) is
+Temp : Integer;
+begin
+	for I in reverse mes'Range loop
+	for J in mes'First .. I loop
+	if mes(I) < mes(J) then
+		Temp := mes(J);
+		mes(J) := mes(I);
+		mes(I) := Temp;
+	end if;
+	end loop;
+	end loop;
+end Bubble_Sort;
+
+
+
+
+---------------------
+--Cuerpo del programa
+---------------------
+
+
+begin
+
+--Enero
   New_Line;
   Put ("Agua recogida"); 
   New_line;
@@ -114,6 +186,9 @@ New_Line;
   diasdelluvia:=0;
 
 
+----------------
+--Arrojar calculos y datos obtenidos
+----------------
 
   New_line;
   New_Line;
@@ -211,3 +286,7 @@ Put ("Media Marzo limitanto el numero de decimales = ");
   -- media_aritmetica := numero_real(Suma) / 31; -- Esto da error de compilacion!!
   Put (numero_real'Image(media_aritmetica)); New_line;
 end;
+
+
+
+
