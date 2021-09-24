@@ -7,10 +7,12 @@ type Vector is array (1..50) of integer;
 
 --   pragma Priority (System.Priority'First);
 
+
 --Declaraciones
 
-procedure printVector ();
+procedure printVector (vec : in Vector);
 
+vec : Vector:=(1=>10 ,3=>17 ,4=>154 ,10=>40 ,15=>8 ,20=>21 ,26=>15 ,30=>27 ,33=>88 ,41=>11 ,48=>66, others => 0 );
 
 Suma : Integer;
 Maximo : Integer;
@@ -31,10 +33,10 @@ task body Ordena is
 begin
 	for I in reverse Vector'Range loop
 	for J in Vector'First .. I loop
-		if A(I) < A(J) then
-			Temp := Vector(J);
-			Vector(J) := Vector(I);
-			Vector(I) := Temp;
+		if vec(I) < vec(J) then
+			Temp := vec(J);
+			vec(J) := vec(I);
+			vec(I) := Temp;
 		end if;
 	end loop;
 	end loop;
@@ -45,8 +47,8 @@ end Ordena;
 task body SumaElementos is
 begin
 	Suma:=0;
-	for I in Vector'Range loop
-		Suma:=Suma + Vector(I);
+	for I in vec'Range loop
+		Suma:= Suma + vec(I);
 	end loop;
 end SumaElementos;
 
@@ -54,11 +56,12 @@ end SumaElementos;
 
 task body getMaximo is
 	Temp:Integer:=0;
-	for I in Vector'Range loop
-		if Vector(I)>Temp then
-			Temp:=Vector(I)
-		end if
-	end loop
+	begin
+	for I in vec'Range loop
+		if vec(I)>Temp then
+			Temp:=vec(I);
+		end if;
+	end loop;
 	Maximo:=Temp;
 end getMaximo;
 			
@@ -67,22 +70,53 @@ end getMaximo;
 --Tareas suministradas
 -----------------
 
-
-
 task body A is 
 begin
   Put_Line ("AAAA"); 
   delay (0.0);
-  Put_Line ("AAAA"); 
+  Put_Line ("AAAA");
+  printVector(vec); 
 end A;
 
 task body B is
 begin
   Put_Line ("BBBB"); 
   delay (0.0);
-  Put_line ("BBBB"); 
-
+  Put_line ("BBBB");
+  New_Line;
+  Put ("Vector: ");
+  for I in Vector'Range loop
+	Put(Integer'Image(vec(I)));
+	if I<vec'Last then 
+		Put(", ");
+	end if;
+  end loop;
+  Put(")");
+  New_Line;
 end B;
+
+
+--------------
+--Procedimiento implementado
+--------------
+
+procedure printVector(vec : in Vector) is
+	begin
+	New_Line;
+	Put ("Vector: (");
+	for I in Vector'Range loop
+		Put(Integer'Image(vec(I)));
+		if I<vec'Last then 
+		Put(", ");
+		end if;
+	end loop;
+	Put(")");
+	New_Line;
+end printVector;
+
+--------------------------
+----Cuerpo del programa
+-------------------------
 
 begin
    Put_Line ("hola");
@@ -92,18 +126,4 @@ begin
 end lanzatareas;
 
 
---------------
---Procedimiento implementado
---------------
 
-procedure printVector() is
-	New_Line;
-	Put ("Vector: ")
-	for I in Vector'Range loop
-		Put(Integer'Image(Vector(I)));
-		if I<Vector'Last then 
-		Put(", ");
-		end if;
-	New_Line;
-	end loop;
-end printVector;
