@@ -2,9 +2,9 @@ V "GNAT Lib v3.13 "
 M P W=b
 A -g
 P
-R nnvvnnvvnnnnvvvvnvvvvnnnnnnvnnvnnnvnnnnnnnn
+R nnvvnnvvnnnnvvvvnvvvvvnnvnnvnnvnnnvnnnnnnnn
 
-U lanzatareas%b		lanzatareas.adb		45A1238D NE SU IL
+U ejercicio5%b		ejercicio5.adb		48A04F6D NE SU IL
 W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W kernel%s		kernel.ads		kernel.ali
@@ -16,6 +16,7 @@ W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
 W system.task_info%s	s-tasinf.adb		s-tasinf.ali
 W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
 D ada.ads		20000718095948 2359F9ED
@@ -26,13 +27,13 @@ D a-finali.ads		20000718095948 3F32DEEF
 D a-filico.ads		20000718095948 1DECB9AC
 D a-stream.ads		20000718095948 5F7C277B
 D a-tags.ads		20000718095948 45EF7E4E
+D ejercicio5.adb	20210928173034 5E0D7799
 D kernel.ads		20010312182047 56BBE4F1
 D kernel-cpu_primitives.ads  20010312182047 5746D7AD
 D kernel-parameters.ads	20010312182047 0D1B8F78
 D kernel-serial_output.ads  20010312182047 16AD38F4
 D kernel-threads.ads	20010312182047 234DAE87
 D kernel-time.ads	20010312182047 7A57ECF4
-D lanzatareas.adb	20210928174439 530C1B79
 D system.ads		20010312182047 2AE5BAFE
 D s-exctab.ads		20000718095948 7A25F5F9
 D s-finimp.ads		20000718095949 1C201C0F
@@ -48,36 +49,37 @@ D s-stratt.ads		20000718095949 1761725B
 D s-tasinf.ads		20000718095949 0F7BBEC5
 D s-taspri.ads		20010312182047 3235B2AC
 D s-taskin.ads		20000718095949 09146F23
+D s-taprob.ads		20000718095949 1D5668B3
 D s-tassta.ads		20000718095949 72B0D55C
 D s-unstyp.ads		20000718095949 78AFB91D
 D unchconv.ads		20000718095949 72DC4539
-X 9 kernel.ads
-36U9*Kernel 15|2r6 2r32
-X 12 kernel-serial_output.ads
-36U16*Serial_Output 15|2r13 2r39
-41U14*Put 15|109r9 111r17 113r17 116r9
-43U14*New_Line 15|108r9 117r9
-49U14*Put_Line 15|34r9 45r9 53r9 59r9 60r9 68r9 76r9 77r9 87r3 88r3 90r3
-. 95r3 96r3 98r3 125r4 127r4
-X 15 lanzatareas.adb
-4U11*lanzatareas
-6A6 Vector 13r33 15r7 36r26 37r18 106r32 110r18
-13U11 printVector 35r9 46r9 58r9 75r9 106b11
-13a24 vec 106b23 111r35 112r22
-15a1 vec 35r21 38r20 38r29 39r33 40r25 40r35 41r25 46r21 55r18 56r31 58r21
-. 69r18 70r20 71r31 75r21
-17i1 Suma 54m9 56m17 56r24 60r32
-18i1 Maximo 74m9 77r32
-20t6 A
-21t6 B
+X 9 ejercicio5.adb
+3U11*ejercicio5
+5A6 Vector 15r15 65r26 78r34 79r26
+7w11 lanzatareasProtegido 34r9 36r9 44r9 53r17 80r28 80r58
+8U19 printVector 34r30 61b19 87r17 96r17
+9U19 ordenaProtected 36r30 75b19
+10U19 sumaProtected 44r30 90b19
+11U18 maxProtected 53r38 103b18
+15a9 vec 66r43 67r30 80r49 80r79 81r41 82r33 82r43 83r33 93r26 94r39 106r26
+. 107r28 108r39
+17i9 Suma 92r17 94r25 94r32 99r35
 22t6 Ordena
 23t6 SumaElementos
 24t6 getMaximo
-32i9 Temp 39m25 41r35
-36i13 I 37r34 38r24 40r39 41r29
-37i13 J 38r33 39r37 40r29
-55i13 I 56r35
-66i9 Temp 70r27 71m25 74r17
-69i13 I 70r24 71r35
-110i13 I 111r39 112r20
+50i9 Maximo 53m9 54r32
+65i21 I 66r47 67r28
+76i9 Temp 81m33 83r43
+78i21 I 79r42 80r53 82r47 83r37
+79i21 J 80r83 81r45 82r37
+93i21 I 94r43
+104i9 Temp 107r35 108m33 112r24
+106i21 I 107r32 108r43
+X 10 kernel.ads
+36U9*Kernel 9|1r6 1r32
+X 13 kernel-serial_output.ads
+36U16*Serial_Output 9|1r13 1r39
+41U14*Put 9|64r17 66r25 68r25 71r17 99r17
+43U14*New_Line 9|63r17 72r17 97r17 100r17
+49U14*Put_Line 9|33r9 35r9 43r9 52r9 54r9 98r17 119r4 121r4
 

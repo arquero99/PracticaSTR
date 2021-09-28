@@ -7,18 +7,18 @@ A -gnatws
 P
 R nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
-U ada_main%b		b~lanzatareas.adb	062D54AB PK
+U ada_main%b		b~ejercicio5.adb	7DC8CF93 PK
 W system%s		system.ads		system.ali
 
-U ada_main%s		b~lanzatareas.ads	652FD304 NE PK
+U ada_main%s		b~ejercicio5.ads	39B463AE NE PK
 W system%s		system.ads		system.ali
 
-D b~lanzatareas.ads	20210928174454 4FCA69FA
-D b~lanzatareas.adb	20210928174454 49E73D51
+D b~ejercicio5.ads	20210928173045 1351D950
+D b~ejercicio5.adb	20210928173045 6E9916C3
 D kernel.ads		20010312182047 56BBE4F1
 D kernel-parameters.ads	20010312182047 0D1B8F78
 D system.ads		20010312182047 2AE5BAFE
-X 1 b~lanzatareas.ads
+X 1 b~ejercicio5.ads
 2U9*Ada_Main 2|4b14
 4i4*gnat_argc 8r22 2|182m7 1|8m22 2|182r7
 5M4*gnat_argv 2|183m7 1|9m22
@@ -152,7 +152,7 @@ X 1 b~lanzatareas.ads
 149i4*u00119 271m22
 150i4*u00120 272m22
 151i4*u00121 273m22
-X 2 b~lanzatareas.adb
+X 2 b~ejercicio5.adb
 7U17*Set_Globals 17m25 20r7
 8i10 Main_Priority 21r10
 9i10 Time_Slice_Value 22r10

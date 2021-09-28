@@ -1,0 +1,7 @@
+HOLA :)
+
+Soy Juan Arquero del CIT41 y en este fichero presento los ejercicios del seminario ADA para STR
+
+	Ejercicio4 -> lanzatareas.adb
+	Ejercicio5 -> ejercicio5.adb
+	Ejercicio6 -> vectoroperations.adb (Paquete), vectoroperations.ads (Cabeceras de paquete) y ejercicio6.adb (Procedure que hace uso del paquete)
