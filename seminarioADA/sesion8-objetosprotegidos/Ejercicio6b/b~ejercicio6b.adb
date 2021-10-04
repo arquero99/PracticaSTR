@@ -1,5 +1,5 @@
-pragma Source_File_Name (Ada_Main, Spec_File_Name => "b~agua_recogida.ads");
-pragma Source_File_Name (Ada_Main, Body_File_Name => "b~agua_recogida.adb");
+pragma Source_File_Name (Ada_Main, Spec_File_Name => "b~ejercicio6b.ads");
+pragma Source_File_Name (Ada_Main, Body_File_Name => "b~ejercicio6b.adb");
 
 package body Ada_Main is
    procedure adainit is
@@ -31,8 +31,6 @@ package body Ada_Main is
       -- Ada.Characters'Elab_Spec;
       -- Ada.Characters.Latin_1'Elab_Spec;
       -- Gnat'Elab_Spec;
-      -- Gnat.Case_Util'Elab_Spec;
-      -- Gnat.Case_Util'Elab_Body;
       -- Gnat.Heap_Sort_A'Elab_Spec;
       -- Gnat.Heap_Sort_A'Elab_Body;
       -- Gnat.Htable'Elab_Spec;
@@ -41,23 +39,17 @@ package body Ada_Main is
       -- Kernel'Elab_Spec;
       -- Kernel.Parameters'Elab_Spec;
       -- System'Elab_Spec;
-      -- System.Bit_Ops'Elab_Spec;
       -- System.Img_Int'Elab_Spec;
-      -- System.Img_Real'Elab_Spec;
       -- System.Machine_Code'Elab_Spec;
       -- System.Os_Primitives'Elab_Spec;
       -- System.Os_Primitives'Elab_Body;
       -- System.Parameters'Elab_Spec;
       -- System.Parameters'Elab_Body;
-         Interfaces.C_Streams'Elab_Spec;
-      -- Interfaces.C_Streams'Elab_Body;
-      -- System.Powten_Table'Elab_Spec;
       -- System.Standard_Library'Elab_Spec;
          Ada.Exceptions'Elab_Spec;
       -- System.Exception_Table'Elab_Spec;
          System.Exception_Table'Elab_Body;
          Ada.Io_Exceptions'Elab_Spec;
-         Ada.Strings'Elab_Spec;
          Interfaces.C'Elab_Spec;
          System.Exceptions'Elab_Spec;
       -- System.Storage_Elements'Elab_Spec;
@@ -85,39 +77,18 @@ package body Ada_Main is
       -- System.Traceback'Elab_Body;
          Ada.Exceptions'Elab_Body;
       -- System.Unsigned_Types'Elab_Spec;
-         Ada.Strings.Maps'Elab_Spec;
-      -- Ada.Strings.Maps'Elab_Body;
-      -- Ada.Strings.Fixed'Elab_Spec;
-      -- Ada.Strings.Search'Elab_Spec;
-      -- Ada.Strings.Search'Elab_Body;
-      -- Ada.Strings.Fixed'Elab_Body;
-      -- System.Fat_Llf'Elab_Spec;
-      -- System.Img_Llu'Elab_Spec;
-      -- System.Img_Llu'Elab_Body;
-      -- System.Img_Uns'Elab_Spec;
-      -- System.Img_Uns'Elab_Body;
-      -- System.Img_Real'Elab_Body;
+      -- System.Exp_Uns'Elab_Spec;
+      -- System.Exp_Uns'Elab_Body;
       -- System.Stream_Attributes'Elab_Spec;
       -- System.Stream_Attributes'Elab_Body;
          System.Finalization_Root'Elab_Spec;
       -- System.Finalization_Root'Elab_Body;
-         Gnat.Exceptions'Elab_Spec;
-      -- System.Bit_Ops'Elab_Body;
          System.Finalization_Implementation'Elab_Spec;
       -- System.Finalization_Implementation'Elab_Body;
          Ada.Finalization'Elab_Spec;
       -- Ada.Finalization'Elab_Body;
          Ada.Finalization.List_Controller'Elab_Spec;
       -- Ada.Finalization.List_Controller'Elab_Body;
-         System.File_Control_Block'Elab_Spec;
-      -- System.File_Io'Elab_Spec;
-         System.File_Io'Elab_Body;
-      -- System.Val_Int'Elab_Spec;
-      -- System.Val_Uns'Elab_Spec;
-      -- System.Val_Util'Elab_Spec;
-      -- System.Val_Util'Elab_Body;
-      -- System.Val_Uns'Elab_Body;
-      -- System.Val_Int'Elab_Body;
       -- Kernel.Cpu_Primitives'Elab_Spec;
          Kernel.Cpu_Primitives'Elab_Body;
       -- Kernel.Memory'Elab_Spec;
@@ -125,11 +96,17 @@ package body Ada_Main is
          Kernel.Peripherals.Registers'Elab_Spec;
          Kernel.Peripherals'Elab_Body;
          Kernel.Memory'Elab_Body;
+      -- Kernel.Serial_Output'Elab_Spec;
+         Kernel.Serial_Output'Elab_Body;
       -- Kernel.Time'Elab_Spec;
          Kernel.Threads'Elab_Spec;
       -- System.Task_Primitives'Elab_Spec;
       -- System.Tasking'Elab_Spec;
       -- System.Standard_Library'Elab_Body;
+      -- System.Tasking.Entry_Calls'Elab_Spec;
+      -- System.Tasking.Initialization'Elab_Spec;
+         System.Tasking.Task_Attributes'Elab_Spec;
+      -- System.Tasking.Utilities'Elab_Spec;
       -- Kernel.Threads.Protection'Elab_Spec;
       -- Kernel.Threads.Queues'Elab_Spec;
          Kernel.Threads.Queues'Elab_Body;
@@ -146,10 +123,28 @@ package body Ada_Main is
       -- System.Task_Primitives.Operations'Elab_Spec;
          System.Task_Primitives.Operations'Elab_Body;
          System.Tasking.Debug'Elab_Body;
+      -- System.Tasking.Task_Attributes'Elab_Body;
          System.Tasking'Elab_Body;
-         Ada.Text_Io'Elab_Spec;
-         Ada.Text_Io'Elab_Body;
-      -- agua_recogida'elab_body;
+         System.Tasking.Initialization'Elab_Body;
+      -- System.Tasking.Protected_Objects'Elab_Spec;
+      -- System.Tasking.Protected_Objects'Elab_Body;
+         System.Tasking.Protected_Objects.Entries'Elab_Spec;
+      -- System.Tasking.Protected_Objects.Entries'Elab_Body;
+      -- System.Tasking.Queuing'Elab_Spec;
+         System.Tasking.Queuing'Elab_Body;
+      -- System.Tasking.Utilities'Elab_Body;
+      -- System.Tasking.Rendezvous'Elab_Spec;
+      -- System.Tasking.Protected_Objects.Operations'Elab_Spec;
+         System.Tasking.Protected_Objects.Operations'Elab_Body;
+         System.Tasking.Rendezvous'Elab_Body;
+      -- System.Tasking.Entry_Calls'Elab_Body;
+      -- System.Tasking.Stages'Elab_Spec;
+         System.Tasking.Stages'Elab_Body;
+         vectorprotegido'elab_spec;
+         vectorprotegido'elab_body;
+         vectorprotegidotasks'elab_spec;
+         vectorprotegidotasks'elab_body;
+      -- ejercicio6b'elab_body;
       null;
    end adainit;
 
@@ -158,7 +153,7 @@ package body Ada_Main is
       procedure do_finalize;
       pragma Import
         (C, do_finalize,
-         "system__finalization_implementation__finalize_global_list");
+         "system__tasking__stages__finalize_global_tasks");
 
    begin
       do_finalize;
@@ -178,7 +173,7 @@ package body Ada_Main is
 
 
       procedure Ada_Main_Program;
-      pragma Import (Ada, Ada_Main_Program, "_ada_agua_recogida");
+      pragma Import (Ada, Ada_Main_Program, "_ada_ejercicio6b");
 
    begin
       gnat_argc := argc;
@@ -195,7 +190,9 @@ package body Ada_Main is
    end;
 
 -- BEGIN Object file/option list
-   --   ./agua_recogida.o
+   --   ./vectorprotegido.o
+   --   ./vectorprotegidotasks.o
+   --   ./ejercicio6b.o
    --   -L./
    --   -L/usr/local/openravenscar/lib/gcc-lib/sparc-ork-elf/2.8.1/adalib/
    --   /usr/local/openravenscar/lib/gcc-lib/sparc-ork-elf/2.8.1/adalib/libgnarl.a

@@ -1,7 +1,7 @@
 --Programa creado por Juan Arquero para STR el 21/09/21
 
 
-with Kernel.Serial_Output; use Kernel.Serial_Output;	
+with Ada.Text_IO, Ada.Strings.Fixed; use Ada.Text_IO, Ada.Strings.Fixed;	
 
 procedure agua_recogida is
 
@@ -11,7 +11,7 @@ type Agua_recogida is array (Dia_del_mes) of integer;
 type numero_real is digits 4 range 0.0..1000.0; -- coma flotante
 
 function mediaMesDado (mes : Agua_recogida) return numero_real;
-procedure lluviaEntre (mes: in Agua_recogida; x : in Dia_del_mes; y : in Dia_del_mes ; numDias : out Integer; mediaDias : out numero_real);
+procedure lluviaEntre (mes: in Agua_recogida; x : in integer; y : in integer ; numDias : out Integer; mediaDias : out numero_real);
 procedure OrdenaBurbuja (mes : in out Agua_recogida);
 
 Enero : Agua_recogida := (15=>20, 16=>40, 17=>30, others=>0);
@@ -29,14 +29,24 @@ diaslluviaF : integer := 88;
 diaslluviaM : integer := 88;
 diasSecos : integer := 0;
 pocoE : integer := 0;
+medioE : integer := 0;
 muchoE : integer := 0;
 pocoF : integer := 0;
+medioF : integer := 0;
 muchoF : integer := 0;
 pocoM : integer := 0;
+medioM : integer := 0;
 muchoM : integer := 0;
 
 media: float := 0.0;
 media_aritmetica: numero_real := 0.0;
+x: integer;
+y: integer;
+numDias: Integer:=0;
+xIn: String (1..2);
+yIn: String (1..2);
+rangoN: Natural:=3;
+char: Character;
 
 
 ----------------------------------
@@ -55,23 +65,25 @@ begin
 end mediaMesDado;
 
 
-procedure lluviaEntre (mes : in Agua_recogida; x : in Dia_del_mes; y : in Dia_del_mes ; numDias : out Integer; mediaDias : out numero_real) is 
-sumaDias : integer := 0;
+procedure lluviaEntre (mes : in Agua_recogida; x : in integer; y : in integer ; numDias : out Integer; mediaDias : out numero_real) is 
+min: Integer;
+max: Integer;
 begin
-	numDias:=y-x+1;
-	mediaDias:=0.0;
-	i:=Dia_del_mes(x);
-	
-	loop
-		sumaDias:=sumaDias + mes(i);
-		exit when i=Dia_del_mes(y);
-		i:=i+1;
+	numDias:=0;
+	mediaDias:=mediaMesDado(mes);
+	if x>y then
+		min:=y;
+		max:=x;
+	else
+		min:=x;
+		max:=y;
+	end if;
+	for I in mes'Range loop
+		if mes(I)>min and mes(I)<max then
+			numDias:=numDIas + 1 ;
+		end if;
 	end loop;
-	mediaDias:= (numero_real(sumaDias) / numero_real(numDias));
-	Put ("Dias de lluvia entre los dias especificados = ");
-  	Put (Integer'Image(numDias)); New_line;
-	Put ("Media de lluvia entre los dias especificados = ");
-  	Put (numero_real'Image(mediaDias)); New_line;
+	
 
 end lluviaEntre;	
 
@@ -79,6 +91,12 @@ end lluviaEntre;
 procedure OrdenaBurbuja (mes : in out Agua_recogida) is
 Temp : Integer;
 begin
+	New_Line;
+	Put("Mes sin ordenar: ");
+	for I in mes'Range loop
+		Put(Integer'image(mes(I)));
+		Put(" ");
+	end loop;
 	for I in reverse mes'Range loop
 	for J in mes'First .. I loop
 	if mes(I) < mes(J) then
@@ -87,6 +105,12 @@ begin
 		mes(I) := Temp;
 	end if;
 	end loop;
+	end loop;
+	New_Line;
+	Put("Mes ordenado: ");
+	for I in mes'Range loop
+		Put(Integer'image(mes(I)));
+		Put(" ");
 	end loop;
 end OrdenaBurbuja;
 
@@ -114,7 +138,11 @@ begin
 	suma := suma + Enero(i);
 	sumaEnero:=sumaEnero + Enero(i);
 	if Enero(i) > 25 then
+		if Enero(i)<30 then
+			medioE := medioE + 1;
+		else
 		muchoE := muchoE + 1;
+		end if;
 	else
 		pocoE := pocoE + 1;
 	end if;
@@ -140,7 +168,11 @@ New_Line;
 	suma := suma + Febrero(i);
 	sumaFebrero:=sumaFebrero + Febrero(i);
 	if Febrero(i) > 25 then
+		if Febrero(i)<30 then
+			medioF := medioF + 1;
+		else
 		muchoF := muchoF + 1;
+		end if;
 	else
 		pocoF := pocoF + 1;
 	end if;
@@ -165,7 +197,11 @@ New_Line;
 	suma := suma + Marzo(i);
 	sumaMarzo:=sumaMarzo + Marzo(i);
 	if Marzo(i) > 25 then
+		if Marzo(i)<30 then
+			medioF := medioF + 1;
+		else
 		muchoM := muchoM + 1;
+		end if;
 	else
 		pocoM := pocoM + 1;
 	end if;
@@ -208,17 +244,23 @@ Put ("Numero de dias que ha llovido en Marzo = ");
   Put (integer'Image(diaslluviaM)); New_line;
 
 
-Put ("Numero de dias que ha llovido poco en Enero= ");
+Put ("Numero de dias que ha llovido poco (<25l) en Enero= ");
   Put (integer'Image(pocoE)); New_line;
-Put ("Numero de dias que ha llovido mucho en Enero = ");
+Put ("Numero de dias que ha llovido nivel medio (entre 25l y 30l) en Enero= ");
+  Put (integer'Image(medioE)); New_line;
+Put ("Numero de dias que ha llovido mucho (>30l) en Enero = ");
   Put (integer'Image(muchoE)); New_line;
-Put ("Numero de dias que ha llovido poco en Febrero= ");
+Put ("Numero de dias que ha llovido poco (<25l) en Febrero= ");
   Put (integer'Image(pocoF)); New_line;
-Put ("Numero de dias que ha llovido mucho en Febrero = ");
+Put ("Numero de dias que ha llovido nivel medio (entre 25l y 30l) en Enero= ");
+  Put (integer'Image(medioF)); New_line;
+Put ("Numero de dias que ha llovido mucho (>30l) en Febrero = ");
   Put (integer'Image(muchoF)); New_line;
-Put ("Numero de dias que ha llovido poco en Marzo= ");
+Put ("Numero de dias que ha llovido poco (<25l) en Marzo= ");
   Put (integer'Image(pocoM)); New_line;
-Put ("Numero de dias que ha llovido mucho en Marzo = ");
+Put ("Numero de dias que ha llovido nivel medio (entre 25l y 30l) en Enero= ");
+  Put (integer'Image(medioM)); New_line;
+Put ("Numero de dias que ha llovido mucho (>30l) en Marzo = ");
   Put (integer'Image(muchoM)); New_line;
 New_Line;
 
@@ -284,18 +326,65 @@ Put ("Media Marzo limitanto el numero de decimales = ");
 --Llamadas a funciones/procesos implementados
 ---------------
 New_Line;
+New_Line;
+Put_Line("------------------------------------------------------");
 Put("Llamadas a funciones/procesos implementados");
 New_Line;
-Put("Enero: ");
+
+Put("Ejercicio 3.1 Medias Atitmeticas");
+New_Line;
+Put("Media Enero: ");
 Put(numero_real'Image(mediaMesDado(Enero)));
 New_Line;
-Put("Febrero: ");
+
+Put("Media Febrero: ");
 Put(numero_real'Image(mediaMesDado(Febrero)));
 New_Line;
-Put("Marzo: ");
+
+Put("Media Marzo: ");
 Put(numero_real'Image(mediaMesDado(Marzo)));
 New_Line;
+New_Line;
 
+Put("Ejercicio 3.2 dados dos valores como parametros de entrada X e Y, devuelve en un parametro de salida el numero de dias que ha llovido una cantidad de litros comprendida entre X e Y");
+New_Line;
+
+Put("Por favor indica el valor x: ");
+Get_Line(xIn,rangoN);
+x:=Integer'value(xIn);
+Put(Integer'Image(x));
+New_line;
+Put("Por favor indica el valor y: ");
+Get_Line(yIn,rangoN);
+y:=Integer'value(yIn);
+Put(Integer'Image(y));
+New_line;
+lluviaEntre(Enero,x,y,numDias,media_aritmetica);
+Put_line("Dias que ha llovido una cantidad entre X e Y: ");
+Put(Integer'Image(numDias));
+New_line;
+Put_line("Media: ");
+Put(numero_real'Image(media_aritmetica));
+New_Line;
+New_Line;
+
+Put("Ejercicio 3.3 Ordenacion por metodo de la burbuja");
+New_Line;
+Put("Por favor indica el mes que desea ordenar");
+New_Line;
+Put("                1) Enero");
+New_Line;
+Put("                2) Febrero");
+New_Line;
+Put("                3) Marzo");
+New_line;
+Get(char);
+case char is 
+	when '1' => OrdenaBurbuja(Enero);
+	when '2' => OrdenaBurbuja(Febrero);
+	when '3' => OrdenaBurbuja(Marzo);
+	when others => Put("Numero introducido fuera de las posibilidades. No valido");
+end case;
 
 end agua_recogida;
 

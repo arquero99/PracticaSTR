@@ -1,40 +1,8 @@
 with Kernel.Serial_Output; use Kernel.Serial_Output;
 
-package body vectoroperations is
-	
+package body vectorprotegido is
 
-
-	-----------------
-	--Tareas Implementadas
-	------------------
-
-	task body Ordena is
-	begin
-		Put_Line ("Vector original: ");
-		lanzatareasProtegido.printVector;
-		Put_Line ("Ordenando");
-		lanzatareasProtegido.ordenaProtected;
-	end Ordena;
-
-
-
-	task body SumaElementos is
-	begin
-		Put_Line("Sumando");
-		lanzatareasProtegido.sumaProtected;
-	end SumaElementos;
-
-
-
-	task body getMaximo is
-		Maximo : Integer;
-	begin
-		Put_Line("Calculando Maximo");
-		Maximo:=lanzatareasProtegido.maxProtected;
-		Put_Line(Integer'Image(Maximo));
-	end getMaximo;
-
-	-- Funciones protegidas propias de los objetos protegidos
+	--FUNCIONES INCLUIDAS EN EL OBJETO PROTEGIDO
 
 	Protected body lanzatareasProtegido is
 	
@@ -94,9 +62,10 @@ package body vectoroperations is
 	
 	end lanzatareasProtegido;
 
---begin
-	--Put_Line ("Comenzando ejecución de cuerpo del paquete");
+begin
+	--Put_Line ("Comenzando ejecución de cuerpo del paquete vectorProtegido");
 	--delay (0.0);
 	--Put_Line ("adios");
+	null;
 
-end vectoroperations;
+end vectorprotegido;
