@@ -27,7 +27,11 @@ package body add is
     ------------- declaration of tasks 
     -----------------------------------------------------------------------
 
-    -- Aqui se declaran las tareas que forman el STR
+	Task getDistancia is 
+		Pragma Priority (1);
+	end getDistancia;
+
+    
 
 
     -----------------------------------------------------------------------
@@ -35,8 +39,27 @@ package body add is
     -----------------------------------------------------------------------
 
     -- Aqui se escriben los cuerpos de las tareas 
-
-
+	
+	task body getDistancia is
+	Current_D: Distance_Samples_Type := 0;
+	SigInstante : Time;
+	Intervalo: Duration := 0.2;
+	begin
+	SigInstante:= SigInstante + To_time_Span(Intervalo);
+	loop
+		Starting_notice("Inicio getDistancia");
+		for I in 1..20 loop
+			Reading_Distance (Current_D);
+            Display_Distance (Current_D);
+            if (Current_D < 40) then Light (On); 
+                                else Light (Off); end if;
+		end loop;
+		Finishing_Notice("Fin getDistancia");		
+		delay until (SigInstante);
+		SigInstante:= SigInstante + To_time_Span(Intervalo);
+	end loop;
+	end getDistancia;
+		
     ----------------------------------------------------------------------
     ------------- procedure para probar los dispositivos 
     ----------------------------------------------------------------------
@@ -65,10 +88,10 @@ package body add is
             --if (Current_V > 110) then Beep (2); end if;
 
          -- Prueba volante
-            Reading_Steering (Current_S);
-            Display_Steering (Current_S);
-            if (Current_S > 30) OR (Current_S < -30) then Light (On);
-                                                     else Light (Off); end if;
+            --Reading_Steering (Current_S);
+           -- Display_Steering (Current_S);
+            --if (Current_S > 30) OR (Current_S < -30) then Light (On);
+                                                     --else Light (Off); end if;
 
          -- Prueba Posicion de la cabeza
             --Reading_HeadPosition (Current_H);
@@ -83,7 +106,7 @@ package body add is
             --Reading_Sensors (Current_E);
             --Display_Electrodes_Sample (Current_E);
    
-         delay until (Clock + To_time_Span(0.1));
+         delay until (Clock + To_time_Span(0.05));
          end loop;
 
          Finishing_Notice ("Prueba_Dispositivo");
@@ -92,7 +115,7 @@ package body add is
 
 begin
    Starting_Notice ("Programa Principal");
-   Prueba_Dispositivos;
+  -- Prueba_Dispositivos;
    Finishing_Notice ("Programa Principal");
 end add;
 
