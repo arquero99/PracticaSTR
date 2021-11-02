@@ -1,6 +1,6 @@
 with devices use devices;
 
-package medidas is 
+package body medidas is 
 	Protected medidasProtegido is 
 		procedure setDistancia(dist in: Distance_Samples_Type) is
 			begin
