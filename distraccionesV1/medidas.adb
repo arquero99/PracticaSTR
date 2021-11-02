@@ -14,3 +14,6 @@ package body medidas is
 	end medidasProtegido;
 end medidas;
 
+begin 
+	null;
+end medidas;
