@@ -6,6 +6,7 @@ with System; use System;
 with Tools; use Tools;
 with Devices; use Devices;
 with medidas; use medidas;
+with sintomas; use sintomas;
 
 -- Packages needed to generate pulse interrupts       
 -- with Ada.Interrupts.Names;
@@ -72,11 +73,14 @@ package body add is
 			
 
 			if(medidasProtegido.getDistancia < (d_seg/3)) then
-				Put(" PELIGRO DE COLISION");
+				sintomasProtegido.setDistancia(PELIGRO);
+				--Put(" PELIGRO DE COLISION");
 			elsif(medidasProtegido.getDistancia < (d_seg/2)) then
-				Put(" DISTANCIA IMPRUDENTE");
+				sintomasProtegido.setDistancia(IMPRUDENTE);
+				--Put(" DISTANCIA IMPRUDENTE");
 			elsif (medidasProtegido.getDistancia < d_seg) then 
-				Put(" DISTANCIA INSEGURA");
+				sintomasProtegido.setDistancia(INSEGURA);
+				--Put(" DISTANCIA INSEGURA");
 			end if;
 			
 				

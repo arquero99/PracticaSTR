@@ -1,0 +1,63 @@
+V "GNAT Lib v3.13 "
+A -g
+P LC TF
+R nnvnrnnvnnnnvvvvnvvvnnnnvnnnnnvnnnnnnnnnnnn
+
+U sintomas%b		sintomas.adb		166A2B0C PK IL
+W ada.exceptions%s	a-except.adb		a-except.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+
+U sintomas%s		sintomas.ads		669E2F4A PK IL
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+
+D ada.ads		20000718095948 2359F9ED
+D a-except.ads		20000718095948 287FCF69
+D a-finali.ads		20000718095948 3F32DEEF
+D a-filico.ads		20000718095948 1DECB9AC
+D a-stream.ads		20000718095948 5F7C277B
+D a-tags.ads		20000718095948 45EF7E4E
+D kernel.ads		20010312182047 56BBE4F1
+D kernel-cpu_primitives.ads  20010312182047 5746D7AD
+D kernel-parameters.ads	20010312182047 0D1B8F78
+D kernel-threads.ads	20010312182047 234DAE87
+D kernel-time.ads	20010312182047 7A57ECF4
+D sintomas.ads		20211114175125 669E2F4A
+D sintomas.adb		20211114175209 70F40446
+D system.ads		20010312182047 2AE5BAFE
+D s-exctab.ads		20000718095948 7A25F5F9
+D s-finimp.ads		20000718095949 1C201C0F
+D s-finroo.ads		20000718095949 166D4EDA
+D s-parame.ads		20000718095949 25FE086A
+D s-secsta.ads		20000718095949 60A2A5CD
+D s-soflin.ads		20000718095949 006B24D7
+D s-stache.ads		20000718095949 42B57F2A
+D s-stalib.ads		20000718095949 438B3864
+D s-stoele.ads		20000718095949 131D4539
+D s-stratt.ads		20000718095949 1761725B
+D s-tasinf.ads		20000718095949 0F7BBEC5
+D s-taspri.ads		20010312182047 3235B2AC
+D s-taskin.ads		20000718095949 09146F23
+D s-taprob.ads		20000718095949 1D5668B3
+D s-unstyp.ads		20000718095949 78AFB91D
+D unchconv.ads		20000718095949 72DC4539
+X 12 sintomas.ads
+1U9*sintomas 13|1b14
+3E6*situacionDist 8r50 13|10r50 27r46 12|17r38
+3N24*INSEGURA
+3N34*IMPRUDENTE
+3N46*PELIGRO
+3N55*SEGURA
+5w19*sintomasProtegido 13|7r25 12r25 17r25 24r32 29r32 34r32
+7U27 setCabezaInclinada 13|5b27
+7e46 pos 13|5b47 7r60
+8U27 setDistancia 13|10b27
+8e41 dist 13|10b41 12r55
+9U27 setVolante 13|15b27
+9e38 vol 13|15b39 17r54
+11U26 getCabezaInclinada 13|22b26
+13U26 getVolante 13|32b26
+16e25 cabezaInclinada 13|7r43 24r50
+17e25 distActual 13|12r43 29r50
+18e25 volantazo 13|17r43 34r50
+

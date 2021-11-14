@@ -3,7 +3,7 @@ A -g
 P LC TF
 R nnvvrnvvnnnnvvvvnvvvnnnnvnnnnnvnnnnnnnnnnnn
 
-U add%b			add.adb			199A95B5 PK IL
+U add%b			add.adb			1C360C24 PK IL
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.real_time%s	a-reatim.adb		a-reatim.ali
@@ -12,6 +12,7 @@ W devices%s		devices.adb		devices.ali  ED
 W kernel%s		kernel.ads		kernel.ali
 W kernel.serial_output%s  kernel-serial_output.adb  kernel-serial_output.ali  ED
 W medidas%s		medidas.adb		medidas.ali  ED
+W sintomas%s		sintomas.adb		sintomas.ali  ED
 W system%s		system.ads		system.ali
 W system.parameters%s	s-parame.adb		s-parame.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
@@ -31,7 +32,7 @@ D a-retide.ads		20000718095948 7F3C479C
 D a-stream.ads		20000718095948 5F7C277B
 D a-tags.ads		20000718095948 45EF7E4E
 D add.ads		20210922110334 204085E0
-D add.adb		20211114152801 10B03FB3
+D add.adb		20211114172043 73828968
 D devices.ads		20211005180147 76B11196
 D kernel.ads		20010312182047 56BBE4F1
 D kernel-cpu_primitives.ads  20010312182047 5746D7AD
@@ -42,6 +43,7 @@ D kernel-serial_output.ads  20010312182047 16AD38F4
 D kernel-threads.ads	20010312182047 234DAE87
 D kernel-time.ads	20010312182047 7A57ECF4
 D medidas.ads		20211114154931 421DC455
+D sintomas.ads		20211114175125 669E2F4A
 D system.ads		20010312182047 2AE5BAFE
 D s-exctab.ads		20000718095948 7A25F5F9
 D s-finimp.ads		20000718095949 1C201C0F
@@ -68,53 +70,60 @@ X 1 ada.ads
 18U9*Ada 10|3r6 3r25
 X 5 a-reatim.ads
 43U13*Real_Time 10|3r10 3r29
-57U13*Clock 10|84r30 120r30 153r30
-59U13*"+" 10|84r36 120r36 153r36
-85U13*To_Time_Span 10|84r38 120r38 153r38
+57U13*Clock 10|88r30 124r30 157r30
+59U13*"+" 10|88r36 124r36 157r36
+85U13*To_Time_Span 10|88r38 124r38 157r38
 X 9 add.ads
-1U9*add 10|14b14
-2U13*Background 10|19b15
+1U9*add 10|15b14
+2U13*Background 10|20b15
 X 10 add.adb
-33t9 LeeDistancia
-37t9 LeeCabeza
-42t11 LeeVolante
-55i5 Current_D 62m43 67r55
-56i5 Current_V 64m40 68r55
-57i5 d_seg 70m25 74r61 76r64 78r64
-89a9 Current_H 98m39 105r21 105r65 109r21 109r67 111r56 111r96 122r28
-90a9 H_Before 105r43 105r87 109r43 109r89 122m17
-91i9 Current_S 101m35 111r37 111r76
-130i9 S_Before 146r44 146r99 155m17
-131i9 Current_S 140m35 146r61 146r116 155r28
-132i9 Current_V 139m32 146r132
+34t9 LeeDistancia
+38t9 LeeCabeza
+43t11 LeeVolante
+56i5 Current_D 63m43 68r55
+57i5 Current_V 65m40 69r55
+58i5 d_seg 71m25 75r61 78r64 81r64
+93a9 Current_H 102m39 109r21 109r65 113r21 113r67 115r56 115r96 126r28
+94a9 H_Before 109r43 109r87 113r43 113r89 126m17
+95i9 Current_S 105m35 115r37 115r76
+134i9 S_Before 150r44 150r99 159m17
+135i9 Current_S 144m35 150r61 150r116 159r28
+136i9 Current_V 143m32 150r132
 X 11 devices.ads
 5U9*devices 10|7r6 7r19
-56N41*x 10|105r31 105r52 105r75 105r96
-56N43*y 10|109r31 109r52 109r77 109r98 111r66 111r106
-58A10*HeadPosition_Samples_Type 10|89r20 90r19
-61U15*Reading_HeadPosition 10|98r17
-68I10*Distance_Samples_Type 10|55r16 57r12 70r33
-70U15*Reading_Distance 10|62r25
-76I10*Speed_Samples_Type 10|56r16 132r20
-78U15*Reading_Speed 10|64r25 139r17
-84I10*Steering_Samples_Type 10|91r20 130r19 131r20 146r22 146r77
-86U15*Reading_Steering 10|101r17 140r17
+56N41*x 10|109r31 109r52 109r75 109r96
+56N43*y 10|113r31 113r52 113r77 113r98 115r66 115r106
+58A10*HeadPosition_Samples_Type 10|93r20 94r19
+61U15*Reading_HeadPosition 10|102r17
+68I10*Distance_Samples_Type 10|56r16 58r12 71r33
+70U15*Reading_Distance 10|63r25
+76I10*Speed_Samples_Type 10|57r16 136r20
+78U15*Reading_Speed 10|65r25 143r17
+84I10*Steering_Samples_Type 10|95r20 134r19 135r20 150r22 150r77
+86U15*Reading_Steering 10|105r17 144r17
 X 12 kernel.ads
 36U9*Kernel 10|2r6 2r32
 X 17 kernel-serial_output.ads
 36U16*Serial_Output 10|2r13 2r39
-41U14*Put 10|75r33 77r33 79r33 106r33 110r33 112r41 147r33
+41U14*Put 10|110r33 114r33 116r41 151r33
 X 20 medidas.ads
 3U9*medidas 10|8r6 8r19
-4w19*medidasProtegido 10|67r25 68r25 70r55 74r28 76r31 78r32
-5U27 setDistancia 10|67r42
-6U26 getDistancia 10|74r45 76r48 78r49
-7U27 setVelocidad 10|68r42
-8U26 getVelocidad 10|70r72
-X 21 system.ads
+4w19*medidasProtegido 10|68r25 69r25 71r55 75r28 78r31 81r32
+5U27 setDistancia 10|68r42
+6U26 getDistancia 10|75r45 78r48 81r49
+7U27 setVelocidad 10|69r42
+8U26 getVelocidad 10|71r72
+X 21 sintomas.ads
+1U9*sintomas 10|9r6 9r20
+3N24*INSEGURA 10|82r64
+3N34*IMPRUDENTE 10|79r64
+3N46*PELIGRO 10|76r64
+5w19*sintomasProtegido 10|76r33 79r33 82r33
+8U27 setDistancia 10|76r51 79r51 82r51
+X 22 system.ads
 46U9*System 10|4r6 4r18
-X 41 tools.ads
+X 42 tools.ads
 6U9*tools 10|6r6 6r17
-13U15*Starting_Notice 10|61r17 96r17 137r17 216r4
-14U15*Finishing_Notice 10|83r25 118r17 151r17 217r4
+13U15*Starting_Notice 10|62r17 100r17 141r17 220r4
+14U15*Finishing_Notice 10|87r25 122r17 155r17 221r4
 

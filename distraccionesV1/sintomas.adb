@@ -1,41 +1,39 @@
-type situacionDist is (DISTANCIA INSEGURA, DISTANCIA IMPRUDENTE, PELIGRO DE COLISION);
-
 package body sintomas is
 	
 	Protected body sintomasProtegido is
 		
-		procedure setCabezaInclinada(pos: in boolean) is    //Procedimiento que dada una posicion setea el valor en objeto protegido 		
+		procedure setCabezaInclinada (pos: in boolean) is    --Procedimiento que dada una posicion setea el valor en objeto protegido 		
 			begin
-			sintomasProtegido.cabezaInclinada=pos;
-		end setCabeza;	
+			sintomasProtegido.cabezaInclinada:=pos;
+		end setCabezaInclinada;	
 
-		procedure setDistancia (dist: in situacionDist) is	//Procedimiento para establecer valor de enumerado distActual
+		procedure setDistancia (dist: in situacionDist) is	--Procedimiento para establecer valor de enumerado distActual
 			begin
-			sintomasProtegido.distActual=dist;
+			sintomasProtegido.distActual:=dist;
 		end setDistancia;
 		
-		procedure setVolante (vol: in boolean) is
+		procedure setVolante (vol: in boolean) is	--Procedimiento para establecer estado del volante
 			begin
-			sintomasProtegido.volantazo=vol;
+			sintomasProtegido.volantazo:=vol;
 		end setVolante;
+
+
 		
-		procedure getCabezaInclinada() is  
+		function getCabezaInclinada return boolean is  
 			begin 
 			return sintomasProtegido.cabezaInclinada;
-		end getCabeza;
+		end getCabezaInclinada;
 		
-		procedure getDistancia() is
-			begin
+		function getDistancia return situacionDist is
+			begin					
 			return sintomasProtegido.distActual;
 		end getDistancia;
 
-		procedure getVolante() is
+		function getVolante return boolean is
 			begin
 			return sintomasProtegido.volantazo;
 		end getVolante;
 	
 	end sintomasProtegido;
-begin
-null;
-
 end sintomas;
+
