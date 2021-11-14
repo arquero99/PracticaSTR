@@ -71,26 +71,17 @@ package body add is
 	loop
 		Starting_Notice("leeDistancia");
 			Reading_Distance (Current_D);
-            			--Display_Distance (Current_D);
-<<<<<<< HEAD
+			medidasProtegido.setDistancia(Current_D); 
+				--Display_Distance (Current_D);
 
-=======
-				medidas.setDistanciaM(Current_D); --incluir este metodo en el paquete medidas
->>>>>>> d6163a0d686cf32a647289263f138920e4fcff08
 			Reading_Speed (Current_V);
-				medidas.setVelocidad(Current_V); -- incluir metodo y atributo en medidas
-            		--Display_Speed (Current_V);
-            		d_seg:= Distance_Samples_Type(Current_V / 10 )  ;
-			d_seg:= d_seg*d_seg;
+			medidasProtegido.setVelocidad(Current_V);
+            			--Display_Speed (Current_V);
 
-			if(Current_D < (d_seg/3)) then
-				sintomas.setDistancia("PELIGRO DE COLISION"); 
-			elsif(Current_D < (d_seg/2)) then
-				sintomas.setDistancia("DISTANCIA IMPRUDENTE");
-			elsif (Current_D < d_seg) then 
-				sintomas.setDistancia("DISTANCIA INSEGURA");
-			
-<<<<<<< HEAD
+            		d_seg:= Distance_Samples_Type(Current_V / 10 ) **2 ;
+			--d_seg:= d_seg*d_seg;
+
+
 
 			if(medidasProtegido.getDistancia < (d_seg/3)) then
 				sintomasProtegido.setDistancia(PELIGRO);
@@ -102,15 +93,13 @@ package body add is
 				sintomasProtegido.setDistancia(INSEGURA);
 				
 			end if;
-=======
->>>>>>> d6163a0d686cf32a647289263f138920e4fcff08
-			
 				
 			Finishing_Notice("leeDistancia");
 		delay until (Clock + To_time_Span(0.3));
     end loop;
     end leeDistancia;
-				
+			
+----------	
 
     task body leeCabeza is 
  	Current_H: HeadPosition_Samples_Type := (0,0);
