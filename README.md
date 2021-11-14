@@ -2,12 +2,13 @@ HOLA :)
 
 Somos Raul Torres y Juan Arquero y en este directorio presentamos los ficheroos necesarios para realizar la practica de STR.
 
-#Descripción del programa (Especificaciones): 
+# Descripción del programa (Especificaciones): 
 
-##DETECCIÓN DE SÍNTOMAS
+## DETECCIÓN DE SÍNTOMAS
 El sistema leerá y analizará los datos recogidos de los sensores para detectar los siguientes indicios que pueden
 llevar a una situación de riesgo.
-### Cabeza Inclinada: Se leerá el Giróscopo cada 400 ms. Si la inclinación en el eje X es mayor de 30 grados en
+### Cabeza Inclinada: 
+Se leerá el Giróscopo cada 400 ms. Si la inclinación en el eje X es mayor de 30 grados en
 al menos dos lecturas consecutivas se interpretará que el conductor tiene la Cabeza Inclinada hacia delante
 (+30º) o hacia atrás (-30º) y puede estar dando síntomas de somnolencia o distracción. En caso de que se
 produzcan las dos inclinaciones consecutivas en el eje Y, hacia la izquierda (-30º) o hacia la derecha (+30º),
@@ -19,23 +20,22 @@ posible síntoma de somnolencia. La condición de “CABEZA INCLINADA” deja de
 la posición de la cabeza.
 ###Distancia de Seguridad: Cada 300 ms el sistema medirá la distancia que le separa del vehículo que le
 precede. Si la distancia es menor que la distancia de seguridad recomendada, siendo ésta igual a (Velocidad
-/ 10)2
-se considera el síntoma de “DISTANCIA INSEGURA”. Si la distancia es menor que la mitad de la
+/ 10)2 se considera el síntoma de “DISTANCIA INSEGURA”. Si la distancia es menor que la mitad de la
 distancia de seguridad recomendada se interpretará que hay “DISTANCIA IMPRUDENTE” por no guardar la
 distancia de seguridad. Si la distancia es menor que un tercio de la distancia de seguridad recomendada se
 interpretará que hay “PELIGRO COLISION”. El síntoma desaparece cuando deja de cumplirse la situación
 descrita.
-###Giros de volante: Se leerá la posición del volante cada 350 ms. Si se producen giros bruscos entre dos
+### Giros de volante: Se leerá la posición del volante cada 350 ms. Si se producen giros bruscos entre dos
 lecturas (hay una diferencia de 20º entre dos valores consecutivos) y la velocidad del vehículo es mayor de
 40 km/h, se interpreta que el conductor está realizando correcciones cortas y anómalas, por lo que se
 considera el síntoma de “VOLANTAZO”.
-##VISUALIZACIÓN DE DATOS
+## VISUALIZACIÓN DE DATOS
 El sistema actualizará en el Display la siguiente información una vez por segundo:
-###Distancia actual con el vehículo precedente
-###Velocidad Actual
-###Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
+### Distancia actual con el vehículo precedente
+### Velocidad Actual
+### Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
 No se especifica un formato concreto
-##DETECCIÓN DE RIESGOS Y ACTUACIONES
+## DETECCIÓN DE RIESGOS Y ACTUACIONES
 Cada 150 ms. se analizarán los síntomas para detectar posibles riesgos, ante los cuales el sistema tendrá que
 reaccionar llevando a cabo algunas actuaciones.
 Si se detecta únicamente el síntoma de VOLANTAZO, se considera una distracción leve y se emitirá un pitido
