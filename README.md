@@ -18,9 +18,9 @@ curva acompaña instintivamente la trayectoria del vehículo con un movimiento d
 si el conductor inclina la cabeza lateralmente más de 30º y no está girando el volante se interpreta como
 posible síntoma de somnolencia. La condición de “CABEZA INCLINADA” deja de ser cierta cuando se corrija
 la posición de la cabeza.
-### Distancia de Seguridad: Cada 300 ms el sistema medirá la distancia que le separa del vehículo que le
-precede. Si la distancia es menor que la distancia de seguridad recomendada, siendo ésta igual a (Velocidad
-/ 10)2 se considera el síntoma de “DISTANCIA INSEGURA”. Si la distancia es menor que la mitad de la
+### Distancia de Seguridad: Cada 300 ms el sistema medirá la distancia que le separa del vehículo que le precede. 
+Si la distancia es menor que la distancia de seguridad recomendada, siendo ésta igual a (Velocidad
+/ 10)^2 se considera el síntoma de “DISTANCIA INSEGURA”. Si la distancia es menor que la mitad de la
 distancia de seguridad recomendada se interpretará que hay “DISTANCIA IMPRUDENTE” por no guardar la
 distancia de seguridad. Si la distancia es menor que un tercio de la distancia de seguridad recomendada se
 interpretará que hay “PELIGRO COLISION”. El síntoma desaparece cuando deja de cumplirse la situación
@@ -31,9 +31,9 @@ Si se producen giros bruscos entre dos lecturas (hay una diferencia de 20º entr
 considera el síntoma de “VOLANTAZO”.
 ## VISUALIZACIÓN DE DATOS
 El sistema actualizará en el Display la siguiente información una vez por segundo:
-##### Distancia actual con el vehículo precedente
-##### Velocidad Actual
-##### Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
+#### Distancia actual con el vehículo precedente
+#### Velocidad Actual
+#### Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
 No se especifica un formato concreto
 ## DETECCIÓN DE RIESGOS Y ACTUACIONES
 Cada 150 ms. se analizarán los síntomas para detectar posibles riesgos, ante los cuales el sistema tendrá que
