@@ -5,6 +5,7 @@ with System; use System;
 
 with Tools; use Tools;
 with Devices; use Devices;
+with medidas; use medidas;
 
 -- Packages needed to generate pulse interrupts       
 -- with Ada.Interrupts.Names;
@@ -61,15 +62,20 @@ package body add is
 			Reading_Distance (Current_D);
             			--Display_Distance (Current_D);
 			Reading_Speed (Current_V);
-            		--Display_Speed (Current_V);
-            		d_seg:= Distance_Samples_Type(Current_V / 10 )  ;
-			d_seg:= d_seg*d_seg;
+            			--Display_Speed (Current_V);
+            		
+			medidasProtegido.setDistancia(Current_D);
+			medidasProtegido.setVelocidad(Current_V);			
 
-			if(Current_D < (d_seg/3)) then
+			d_seg:= Distance_Samples_Type(medidasProtegido.getVelocidad / 10 ) ** 2 ;
+			--d_seg:= d_seg*d_seg;
+			
+
+			if(medidasProtegido.getDistancia < (d_seg/3)) then
 				Put("PELIGRO DE COLISION");
-			elsif(Current_D < (d_seg/2)) then
+			elsif(medidasProtegido.getDistancia < (d_seg/2)) then
 				Put("DISTANCIA IMPRUDENTE");
-			elsif (Current_D < d_seg) then 
+			elsif (medidasProtegido.getDistancia < d_seg) then 
 				Put("DISTANCIA INSEGURA");
 			end if;
 			
