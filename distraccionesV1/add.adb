@@ -5,8 +5,8 @@ with System; use System;
 
 with Tools; use Tools;
 with Devices; use Devices;
-with medidas; use medidas;
 with sintomas; use sintomas;
+with medidas; use medidas;
 
 -- Packages needed to generate pulse interrupts       
 -- with Ada.Interrupts.Names;
@@ -40,9 +40,19 @@ package body add is
    end LeeCabeza;
 
 
-     task LeeVolante is 
+   task LeeVolante is 
 	pragma priority (1);
-     end LeeVolante;
+   end LeeVolante;
+
+   task Display is
+	pragma priority (4);
+   end Display;
+	
+
+   task Riesgos is
+	pragma priority(8);
+   end Riesgos;
+
     
 
     -----------------------------------------------------------------------
@@ -62,32 +72,27 @@ package body add is
 		Starting_Notice("leeDistancia");
 			Reading_Distance (Current_D);
             			--Display_Distance (Current_D);
+				medidas.setDistanciaM(Current_D); --incluir este metodo en el paquete medidas
 			Reading_Speed (Current_V);
-            			--Display_Speed (Current_V);
-            		
-			medidasProtegido.setDistancia(Current_D);
-			medidasProtegido.setVelocidad(Current_V);			
+				medidas.setVelocidad(Current_V); -- incluir metodo y atributo en medidas
+            		--Display_Speed (Current_V);
+            		d_seg:= Distance_Samples_Type(Current_V / 10 )  ;
+			d_seg:= d_seg*d_seg;
 
-			d_seg:= Distance_Samples_Type(medidasProtegido.getVelocidad / 10 ) ** 2 ;
-			--d_seg:= d_seg*d_seg;
+			if(Current_D < (d_seg/3)) then
+				sintomas.setDistancia("PELIGRO DE COLISION"); 
+			elsif(Current_D < (d_seg/2)) then
+				sintomas.setDistancia("DISTANCIA IMPRUDENTE");
+			elsif (Current_D < d_seg) then 
+				sintomas.setDistancia("DISTANCIA INSEGURA");
 			
-
-			if(medidasProtegido.getDistancia < (d_seg/3)) then
-				sintomasProtegido.setDistancia(PELIGRO);
-				--Put(" PELIGRO DE COLISION");
-			elsif(medidasProtegido.getDistancia < (d_seg/2)) then
-				sintomasProtegido.setDistancia(IMPRUDENTE);
-				--Put(" DISTANCIA IMPRUDENTE");
-			elsif (medidasProtegido.getDistancia < d_seg) then 
-				sintomasProtegido.setDistancia(INSEGURA);
-				--Put(" DISTANCIA INSEGURA");
-			end if;
 			
 				
 			Finishing_Notice("leeDistancia");
 		delay until (Clock + To_time_Span(0.3));
     end loop;
     end leeDistancia;
+				
 
     task body leeCabeza is 
  	Current_H: HeadPosition_Samples_Type := (0,0);
@@ -107,14 +112,12 @@ package body add is
 
 
 		if((Current_H(x) > 30 AND H_Before(x) > 30) OR (Current_H(x)< -30 AND H_Before(x)< -30) ) then
-				Put ("Cabeza inclinada en X");
+				sintomas.setCabeza(True);
 		end if;
 		
 		if((Current_H(y) > 30 AND H_Before(y) > 30  ) OR (Current_H(y)< -30 AND H_Before(y)< -30)) then
-				Put ("Cabeza inclinada en Y");
 				if((Current_S > 30 AND Current_H(y)> 30)OR(Current_S < -30 AND Current_H(y) < -30)) then
-					Put("Somnolencia");
-				
+					sintomas.setCabeza(True);
 			        end if;
 		end if;
 
@@ -148,7 +151,7 @@ package body add is
 
 
 		if(((Steering_Samples_Type(S_Before + 20) < Current_S)  OR (Steering_Samples_Type(S_Before - 20) > Current_S)) AND Current_V > 40 ) then
-				Put ("Volantazo");
+				sintomas.setVolante(True);
 		end if;
 	
 		
@@ -161,6 +164,116 @@ package body add is
 	end loop;
 			
     end leeVolante;
+
+
+  task body Display is 
+
+	MDist:  Distance_Samples_Type := 0;
+	MVelo:  Speed_Samples_Type := 0;
+
+	begin
+	
+	loop
+		--VALORES NUMERICOS---
+		MDist:= medidas.getDistancia();
+		Display_Distance(MDist);
+		MVelo:= medidas.getVelocidad();
+		Display_Speed (MVelo);
+		
+		
+		
+		
+		--VALORES DE SINTOMAS---
+		if(sintomas.getDistancia()== INSEGURA) then
+			Put("Distancia Insegura");
+		elsif(sintomas.getDistancia()==  IMPRUDENTE) then
+			Put("Distancia Imprudente");
+		elsif(sintomas.getDistancia()== COLISION) then
+			Put("Peligro de colision");
+		end if;
+		
+
+ 		if(sintomas.getVolante()== true) then
+			Put("Volantazo");
+		end if;
+
+		if(sintomas.getCabeza()== true) then 
+			Put("Cabeza inclinada");		
+		end if;
+
+
+		delay until (Clock + To_time_Span(1));
+	end loop;
+
+end Display;
+	
+
+task body Riesgos is
+
+	SCabeza: boolean:=false;
+	SDistIn: boolean:=false;
+	SDistIm: boolean:=false;
+	SDistPe: boolean:=false;
+	SVolante: boolean:=false;
+
+	begin
+	
+	loop	
+		
+		--VALORES DE SINTOMAS---
+		if(sintomas.getDistancia()== INSEGURA) then
+			SDistIn:=true;
+		elsif(sintomas.getDistancia()== IMPRUDENTE) then
+			SDistIm:=true;
+		elsif(sintomas.getDistancia()== PELIGRO) then
+			SDistPe:=true;
+		else 
+			SDistIn:=false;
+			SDistIm:=false;
+			SDistPe:=false;
+		end if;
+		
+
+ 		if(sintomas.getVolante()== true) then
+			SVolante:=true;
+		else 
+			SVolante:=false;	
+		end if;
+
+		if(sintomas.getCabeza()== true) then 
+			SCabeza:=true;
+		else
+			SCabeza:=false;
+		end if;
+		
+		if(SVolante==true AND SDist==false AND SCabeza==false) then
+			Beep(1);
+		end if;
+
+		if(SCabeza==true AND MVelo < 70) then
+			Beep(2);
+		elsif (SCabeza==true AND MVelo > 70) then
+			Beep(3);
+		end if;
+		
+		if(SDistIn==true) then
+			Light(On);
+		elsif(SDistIm==true) then
+			Beep(4);
+			Light(On);
+		else
+			Light(Off);
+		end if;
+
+		if (SDistPe == true AND SCabeza== true) then
+			Beep(5);
+			Activate_Brake;
+		endif;
+
+		delay until (Clock + To_time_Span(0.15));
+	end loop;
+
+end Riesgos;
 	
 	
     ----------------------------------------------------------------------
