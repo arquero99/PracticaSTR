@@ -25,15 +25,15 @@ distancia de seguridad recomendada se interpretará que hay “DISTANCIA IMPRUDE
 distancia de seguridad. Si la distancia es menor que un tercio de la distancia de seguridad recomendada se
 interpretará que hay “PELIGRO COLISION”. El síntoma desaparece cuando deja de cumplirse la situación
 descrita.
-### Giros de volante: Se leerá la posición del volante cada 350 ms. Si se producen giros bruscos entre dos
-lecturas (hay una diferencia de 20º entre dos valores consecutivos) y la velocidad del vehículo es mayor de
+### Giros de volante: Se leerá la posición del volante cada 350 ms. 
+Si se producen giros bruscos entre dos lecturas (hay una diferencia de 20º entre dos valores consecutivos) y la velocidad del vehículo es mayor de
 40 km/h, se interpreta que el conductor está realizando correcciones cortas y anómalas, por lo que se
 considera el síntoma de “VOLANTAZO”.
 ## VISUALIZACIÓN DE DATOS
 El sistema actualizará en el Display la siguiente información una vez por segundo:
-### Distancia actual con el vehículo precedente
-### Velocidad Actual
-### Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
+##### Distancia actual con el vehículo precedente
+##### Velocidad Actual
+##### Síntomas detectados en el conductor, según lo especificado en el epígrafe anterior.
 No se especifica un formato concreto
 ## DETECCIÓN DE RIESGOS Y ACTUACIONES
 Cada 150 ms. se analizarán los síntomas para detectar posibles riesgos, ante los cuales el sistema tendrá que
