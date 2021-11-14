@@ -38,12 +38,17 @@ No se especifica un formato concreto
 ## DETECCIÓN DE RIESGOS Y ACTUACIONES
 Cada 150 ms. se analizarán los síntomas para detectar posibles riesgos, ante los cuales el sistema tendrá que
 reaccionar llevando a cabo algunas actuaciones.
+
 Si se detecta únicamente el síntoma de VOLANTAZO, se considera una distracción leve y se emitirá un pitido
 de volumen 1.
+
 Si se da el síntoma de CABEZA INCLINADA el sistema emitirá un pitido de intensidad 2. Si además, la velocidad
 del vehículo es mayor de 70 km/h. el pitido será de intensidad 3.
+
 Si se da el síntoma de DISTANCIA INSEGURA se enciende la luz. En caso de DISTANCIA IMPRUDENTE se emite
 un pitido de intensidad 4 y se enciende la luz.
+
 En caso de producirse los síntomas de PELIGRO COLISIÓN y CABEZA INCLINADA simultáneamente se emite un
 pitido de nivel 5 y se activa el freno del vehículo.
+
 En todos los casos las acciones se mantienen hasta que desaparezca la situación de riesgo correspondiente. 
