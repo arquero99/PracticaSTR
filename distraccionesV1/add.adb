@@ -119,12 +119,12 @@ package body add is
 
 
 		if((Current_H(x) > 30 AND H_Before(x) > 30) OR (Current_H(x)< -30 AND H_Before(x)< -30) ) then
-				sintomas.setCabeza(True);
+				sintomasProtegido.setCabeza(True);
 		end if;
 		
 		if((Current_H(y) > 30 AND H_Before(y) > 30  ) OR (Current_H(y)< -30 AND H_Before(y)< -30)) then
 				if((Current_S > 30 AND Current_H(y)> 30)OR(Current_S < -30 AND Current_H(y) < -30)) then
-					sintomas.setCabeza(True);
+					sintomasProtegido.setCabeza(True);
 			        end if;
 		end if;
 
@@ -159,7 +159,7 @@ package body add is
 
 
 		if(((Steering_Samples_Type(S_Before + 20) < Current_S)  OR (Steering_Samples_Type(S_Before - 20) > Current_S)) AND Current_V > 40 ) then
-				sintomas.setVolante(True);
+				sintomasProtegido.setVolante(True);
 		end if;
 	
 		
@@ -183,29 +183,29 @@ package body add is
 	
 	loop
 		--VALORES NUMERICOS---
-		MDist:= medidas.getDistancia();
+		MDist:= medidasProtegido.getDistancia;
 		Display_Distance(MDist);
-		MVelo:= medidas.getVelocidad();
+		MVelo:= medidasProtegido.getVelocidad;
 		Display_Speed (MVelo);
 		
 		
 		
 		
 		--VALORES DE SINTOMAS---
-		if(sintomas.getDistancia== INSEGURA) then
+		if(sintomasProtegido.getDistancia = INSEGURA) then
 			Put("Distancia Insegura");
-		elsif(sintomas.getDistancia==  IMPRUDENTE) then
+		elsif(sintomasProtegido.getDistancia=  IMPRUDENTE) then
 			Put("Distancia Imprudente");
-		elsif(sintomas.getDistancia== COLISION) then
+		elsif(sintomasProtegido.getDistancia= PELIGRO) then
 			Put("Peligro de colision");
 		end if;
 		
 
- 		if(sintomas.getVolante== true) then
+ 		if(sintomasProtegido.getVolante= true) then
 			Put("Volantazo");
 		end if;
 
-		if(sintomas.getCabeza== true) then 
+		if(sintomasProtegido.getCabeza= true) then 
 			Put("Cabeza inclinada");		
 		end if;
 
@@ -229,11 +229,11 @@ task body Riesgos is
 	loop	
 		
 		--VALORES DE SINTOMAS---
-		if(sintomas.getDistancia== INSEGURA) then
+		if(sintomasProtegido.getDistancia= INSEGURA) then
 			SDistIn:=true;
-		elsif(sintomas.getDistancia== IMPRUDENTE) then
+		elsif(sintomasProtegido.getDistancia= IMPRUDENTE) then
 			SDistIm:=true;
-		elsif(sintomas.getDistancia== PELIGRO) then
+		elsif(sintomasProtegido.getDistancia= PELIGRO) then
 			SDistPe:=true;
 		else 
 			SDistIn:=false;
@@ -242,41 +242,41 @@ task body Riesgos is
 		end if;
 		
 
- 		if(sintomas.getVolante== true) then
+ 		if(sintomasProtegido.getVolante= true) then
 			SVolante:=true;
 		else 
 			SVolante:=false;	
 		end if;
 
-		if(sintomas.getCabeza== true) then 
+		if(sintomasProtegido.getCabeza= true) then 
 			SCabeza:=true;
 		else
 			SCabeza:=false;
 		end if;
 		
-		if(SVolante==true AND SDist==false AND SCabeza==false) then
+		if(SVolante=true AND SDist=false AND SCabeza=false) then
 			Beep(1);
 		end if;
 
-		if(SCabeza==true AND MVelo < 70) then
+		if(SCabeza=true AND MVelo < 70) then
 			Beep(2);
-		elsif (SCabeza==true AND MVelo > 70) then
+		elsif (SCabeza=true AND MVelo > 70) then
 			Beep(3);
 		end if;
 		
-		if(SDistIn==true) then
+		if(SDistIn=true) then
 			Light(On);
-		elsif(SDistIm==true) then
+		elsif(SDistIm=true) then
 			Beep(4);
 			Light(On);
 		else
 			Light(Off);
 		end if;
 
-		if (SDistPe == true AND SCabeza== true) then
+		if (SDistPe = true AND SCabeza= true) then
 			Beep(5);
 			Activate_Brake;
-		endif;
+		end if;
 
 		delay until (Clock + To_time_Span(0.15));
 	end loop;
