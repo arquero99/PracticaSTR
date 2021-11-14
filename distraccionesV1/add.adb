@@ -72,11 +72,11 @@ package body add is
 			
 
 			if(medidasProtegido.getDistancia < (d_seg/3)) then
-				Put("PELIGRO DE COLISION");
+				Put(" PELIGRO DE COLISION");
 			elsif(medidasProtegido.getDistancia < (d_seg/2)) then
-				Put("DISTANCIA IMPRUDENTE");
+				Put(" DISTANCIA IMPRUDENTE");
 			elsif (medidasProtegido.getDistancia < d_seg) then 
-				Put("DISTANCIA INSEGURA");
+				Put(" DISTANCIA INSEGURA");
 			end if;
 			
 				
