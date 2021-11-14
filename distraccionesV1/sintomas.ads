@@ -4,7 +4,7 @@ type situacionDist is (INSEGURA, IMPRUDENTE, PELIGRO, SEGURA);
 
 	Protected sintomasProtegido is 
 
-		procedure setCabezaInclinada(pos: in boolean);
+		procedure setCabeza(pos: in boolean);
 		procedure setDistancia (dist: in situacionDist);	
 		procedure setVolante(vol: in boolean);
 			

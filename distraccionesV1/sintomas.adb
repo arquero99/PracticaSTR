@@ -2,7 +2,7 @@ package body sintomas is
 	
 	Protected body sintomasProtegido is
 		
-		procedure setCabezaInclinada (pos: in boolean) is    --Procedimiento que dada una posicion setea el valor en objeto protegido 		
+		procedure setCabeza (pos: in boolean) is    --Procedimiento que dada una posicion setea el valor en objeto protegido 		
 			begin
 			sintomasProtegido.cabezaInclinada:=pos;
 		end setCabezaInclinada;	

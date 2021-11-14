@@ -139,6 +139,7 @@ package body add is
 			
     end leeCabeza;
 
+-----------
 	
     task body leeVolante is 
  	S_Before: Steering_Samples_Type := 0;	
@@ -191,20 +192,20 @@ package body add is
 		
 		
 		--VALORES DE SINTOMAS---
-		if(sintomas.getDistancia()== INSEGURA) then
+		if(sintomas.getDistancia== INSEGURA) then
 			Put("Distancia Insegura");
-		elsif(sintomas.getDistancia()==  IMPRUDENTE) then
+		elsif(sintomas.getDistancia==  IMPRUDENTE) then
 			Put("Distancia Imprudente");
-		elsif(sintomas.getDistancia()== COLISION) then
+		elsif(sintomas.getDistancia== COLISION) then
 			Put("Peligro de colision");
 		end if;
 		
 
- 		if(sintomas.getVolante()== true) then
+ 		if(sintomas.getVolante== true) then
 			Put("Volantazo");
 		end if;
 
-		if(sintomas.getCabeza()== true) then 
+		if(sintomas.getCabeza== true) then 
 			Put("Cabeza inclinada");		
 		end if;
 
@@ -228,11 +229,11 @@ task body Riesgos is
 	loop	
 		
 		--VALORES DE SINTOMAS---
-		if(sintomas.getDistancia()== INSEGURA) then
+		if(sintomas.getDistancia== INSEGURA) then
 			SDistIn:=true;
-		elsif(sintomas.getDistancia()== IMPRUDENTE) then
+		elsif(sintomas.getDistancia== IMPRUDENTE) then
 			SDistIm:=true;
-		elsif(sintomas.getDistancia()== PELIGRO) then
+		elsif(sintomas.getDistancia== PELIGRO) then
 			SDistPe:=true;
 		else 
 			SDistIn:=false;
@@ -241,13 +242,13 @@ task body Riesgos is
 		end if;
 		
 
- 		if(sintomas.getVolante()== true) then
+ 		if(sintomas.getVolante== true) then
 			SVolante:=true;
 		else 
 			SVolante:=false;	
 		end if;
 
-		if(sintomas.getCabeza()== true) then 
+		if(sintomas.getCabeza== true) then 
 			SCabeza:=true;
 		else
 			SCabeza:=false;
