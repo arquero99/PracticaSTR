@@ -5,7 +5,7 @@ package body sintomas is
 		procedure setCabeza (pos: in boolean) is    --Procedimiento que dada una posicion setea el valor en objeto protegido 		
 			begin
 			sintomasProtegido.cabezaInclinada:=pos;
-		end setCabezaInclinada;	
+		end setCabeza;	
 
 		procedure setDistancia (dist: in situacionDist) is	--Procedimiento para establecer valor de enumerado distActual
 			begin
@@ -19,10 +19,10 @@ package body sintomas is
 
 
 		
-		function getCabezaInclinada return boolean is  
+		function getCabeza return boolean is  
 			begin 
 			return sintomasProtegido.cabezaInclinada;
-		end getCabezaInclinada;
+		end getCabeza;
 		
 		function getDistancia return situacionDist is
 			begin					

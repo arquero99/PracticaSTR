@@ -66,10 +66,13 @@ package body add is
     Current_D: Distance_Samples_Type := 0;
     Current_V: Speed_Samples_Type := 0;
     d_seg: Distance_Samples_Type:=0;
+    Siguiente_instante_D: Time;
    
     begin
+	Siguiente_instante_D:=Clock+To_time_Span(0.3);
 	loop
 		Starting_Notice("leeDistancia");
+			
 			Reading_Distance (Current_D);
 			medidasProtegido.setDistancia(Current_D); 
 				--Display_Distance (Current_D);
@@ -95,7 +98,9 @@ package body add is
 			end if;
 				
 			Finishing_Notice("leeDistancia");
-		delay until (Clock + To_time_Span(0.3));
+
+		delay until Siguiente_instante_D;
+		Siguiente_instante_D:=Clock+To_time_Span(0.3);
     end loop;
     end leeDistancia;
 			
@@ -105,15 +110,17 @@ package body add is
  	Current_H: HeadPosition_Samples_Type := (0,0);
 	H_Before: HeadPosition_Samples_Type := (0,0);	
 	Current_S: Steering_Samples_Type := 0;
+	Siguiente_instante_C: Time;
+
     begin
-	
+	Siguiente_instante_C:=Clock+To_time_Span(0.4);
 	loop
 		
 		Starting_Notice("leeCabeza");
 		
 		Reading_HeadPosition (Current_H);
            	--Display_HeadPosition_Sample (Current_H);
-               -- Display_HeadPosition_Sample (H_Before);
+                -- Display_HeadPosition_Sample (H_Before);
 		Reading_Steering (Current_S);
          	--Display_Steering (Current_S);
 
@@ -131,7 +138,8 @@ package body add is
 		
 		Finishing_Notice("leeCabeza");
 		
-		delay until (Clock + To_time_Span(0.4));
+		delay until Siguiente_Instante_C;
+		Siguiente_instante_C:=Clock+To_time_Span(0.4);
 		
 		H_Before:= Current_H;
 		
@@ -145,8 +153,9 @@ package body add is
  	S_Before: Steering_Samples_Type := 0;	
 	Current_S: Steering_Samples_Type := 0;
 	Current_V: Speed_Samples_Type := 0;
+	Siguiente_instante_V: Time;
     begin
-	
+	Siguiente_instante_V:= Clock + To_time_Span(0.35);
 	loop
 		
 		Starting_Notice("leeVolante");
@@ -165,8 +174,8 @@ package body add is
 		
 		Finishing_Notice("leeVolante");
 		
-		delay until (Clock + To_time_Span(0.35));
-		
+		delay until Siguiente_instante_V;
+		Siguiente_instante_V:= Clock + To_time_Span(0.35);
 		S_Before:= Current_S;
 		
 	end loop;
@@ -178,9 +187,10 @@ package body add is
 
 	MDist:  Distance_Samples_Type := 0;
 	MVelo:  Speed_Samples_Type := 0;
+	Siguiente_instante_Display: Time;
 
 	begin
-	
+	Siguiente_instante_Display:= Clock + To_Time_Span(0.1);
 	loop
 		--VALORES NUMERICOS---
 		MDist:= medidasProtegido.getDistancia;
@@ -193,24 +203,35 @@ package body add is
 		
 		--VALORES DE SINTOMAS---
 		if(sintomasProtegido.getDistancia = INSEGURA) then
-			Put("Distancia Insegura");
+			New_Line;			
+			Put(" Distancia Insegura");
+			New_Line;
 		elsif(sintomasProtegido.getDistancia=  IMPRUDENTE) then
-			Put("Distancia Imprudente");
+			New_Line;
+			Put(" Distancia Imprudente");
+			New_Line;
 		elsif(sintomasProtegido.getDistancia= PELIGRO) then
-			Put("Peligro de colision");
+			New_Line;
+			Put(" Peligro de colision");
+			New_Line;
 		end if;
 		
 
  		if(sintomasProtegido.getVolante= true) then
-			Put("Volantazo");
+			New_Line;
+			Put(" Volantazo");
+			New_Line;
 		end if;
 
 		if(sintomasProtegido.getCabeza= true) then 
-			Put("Cabeza inclinada");		
+			New_Line;
+			Put(" Cabeza inclinada");
+			New_Line;		
 		end if;
 
 
-		delay until (Clock + To_time_Span(1));
+		delay until Siguiente_instante_Display;
+		Siguiente_instante_Display:= Clock + To_Time_Span(0.1);
 	end loop;
 
 end Display;
@@ -223,9 +244,11 @@ task body Riesgos is
 	SDistIm: boolean:=false;
 	SDistPe: boolean:=false;
 	SVolante: boolean:=false;
+	MVelo: Speed_Samples_Type:=0;
+	Siguiente_instante_Riesgos: Time;
 
 	begin
-	
+	Siguiente_instante_Riesgos:= Clock + To_Time_Span(0.15);
 	loop	
 		
 		--VALORES DE SINTOMAS---
@@ -240,6 +263,8 @@ task body Riesgos is
 			SDistIm:=false;
 			SDistPe:=false;
 		end if;
+
+		MVelo:=medidasProtegido.getVelocidad;
 		
 
  		if(sintomasProtegido.getVolante= true) then
@@ -254,7 +279,7 @@ task body Riesgos is
 			SCabeza:=false;
 		end if;
 		
-		if(SVolante=true AND SDist=false AND SCabeza=false) then
+		if(SVolante=true AND SDistIn=false AND SDistIm=false AND SDistPe=false AND SCabeza=false) then
 			Beep(1);
 		end if;
 
@@ -278,7 +303,8 @@ task body Riesgos is
 			Activate_Brake;
 		end if;
 
-		delay until (Clock + To_time_Span(0.15));
+		delay until Siguiente_instante_Riesgos;
+		Siguiente_instante_Riesgos:= Clock + To_Time_Span(0.15);
 	end loop;
 
 end Riesgos;

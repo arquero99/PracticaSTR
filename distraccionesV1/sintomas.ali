@@ -3,11 +3,11 @@ A -g
 P LC TF
 R nnvnrnnvnnnnvvvvnvvvnnnnvnnnnnvnnnnnnnnnnnn
 
-U sintomas%b		sintomas.adb		166A2B0C PK IL
+U sintomas%b		sintomas.adb		0B1A0AA0 PK IL
 W ada.exceptions%s	a-except.adb		a-except.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
 
-U sintomas%s		sintomas.ads		669E2F4A PK IL
+U sintomas%s		sintomas.ads		30AEB07C PK IL
 W system.tasking%s	s-taskin.adb		s-taskin.ali
 W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 
@@ -22,8 +22,8 @@ D kernel-cpu_primitives.ads  20010312182047 5746D7AD
 D kernel-parameters.ads	20010312182047 0D1B8F78
 D kernel-threads.ads	20010312182047 234DAE87
 D kernel-time.ads	20010312182047 7A57ECF4
-D sintomas.ads		20211114175125 669E2F4A
-D sintomas.adb		20211114175209 70F40446
+D sintomas.ads		20211114194037 30AEB07C
+D sintomas.adb		20211114195418 3BB4BADC
 D system.ads		20010312182047 2AE5BAFE
 D s-exctab.ads		20000718095948 7A25F5F9
 D s-finimp.ads		20000718095949 1C201C0F
@@ -43,19 +43,20 @@ D s-unstyp.ads		20000718095949 78AFB91D
 D unchconv.ads		20000718095949 72DC4539
 X 12 sintomas.ads
 1U9*sintomas 13|1b14
-3E6*situacionDist 8r50 13|10r50 27r46 12|17r38
+3E6*situacionDist 8r50 12r46 17r38 13|10r50 27r46
 3N24*INSEGURA
 3N34*IMPRUDENTE
 3N46*PELIGRO
 3N55*SEGURA
 5w19*sintomasProtegido 13|7r25 12r25 17r25 24r32 29r32 34r32
-7U27 setCabezaInclinada 13|5b27
-7e46 pos 13|5b47 7r60
+7U27 setCabeza 13|5b27
+7e37 pos 13|5b38 7r60
 8U27 setDistancia 13|10b27
 8e41 dist 13|10b41 12r55
 9U27 setVolante 13|15b27
 9e38 vol 13|15b39 17r54
-11U26 getCabezaInclinada 13|22b26
+11U26 getCabeza 13|22b26
+12U26 getDistancia 13|27b26
 13U26 getVolante 13|32b26
 16e25 cabezaInclinada 13|7r43 24r50
 17e25 distActual 13|12r43 29r50

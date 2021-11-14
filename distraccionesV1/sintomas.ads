@@ -8,8 +8,8 @@ type situacionDist is (INSEGURA, IMPRUDENTE, PELIGRO, SEGURA);
 		procedure setDistancia (dist: in situacionDist);	
 		procedure setVolante(vol: in boolean);
 			
-		function getCabezaInclinada return boolean;
-		--function getDistancia return situacionDist;						te
+		function getCabeza return boolean;
+		function getDistancia return situacionDist;						
 		function getVolante return boolean;
 		
 private
