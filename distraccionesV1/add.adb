@@ -62,6 +62,7 @@ package body add is
 		Starting_Notice("leeDistancia");
 			Reading_Distance (Current_D);
             			--Display_Distance (Current_D);
+
 			Reading_Speed (Current_V);
             			--Display_Speed (Current_V);
             		
@@ -74,13 +75,13 @@ package body add is
 
 			if(medidasProtegido.getDistancia < (d_seg/3)) then
 				sintomasProtegido.setDistancia(PELIGRO);
-				--Put(" PELIGRO DE COLISION");
+			
 			elsif(medidasProtegido.getDistancia < (d_seg/2)) then
 				sintomasProtegido.setDistancia(IMPRUDENTE);
-				--Put(" DISTANCIA IMPRUDENTE");
+				
 			elsif (medidasProtegido.getDistancia < d_seg) then 
 				sintomasProtegido.setDistancia(INSEGURA);
-				--Put(" DISTANCIA INSEGURA");
+				
 			end if;
 			
 				
