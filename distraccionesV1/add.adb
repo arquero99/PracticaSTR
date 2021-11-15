@@ -1,4 +1,3 @@
-
 with Kernel.Serial_Output; use Kernel.Serial_Output;
 with Ada.Real_Time; use Ada.Real_Time;
 with System; use System;
@@ -23,35 +22,6 @@ package body add is
         null;
       end loop;
     end Background;
-    ----------------------------------------------------------------------
-
-    -----------------------------------------------------------------------
-    ------------- declaration of tasks 
-    -----------------------------------------------------------------------
-
-    -- Aqui se declaran las tareas que forman el STR
-     
-   task LeeDistancia is 
-	pragma priority (3);
-   end LeeDistancia;
-
-   task LeeCabeza is 
-	pragma priority (2);
-   end LeeCabeza;
-
-
-   task LeeVolante is 
-	pragma priority (1);
-   end LeeVolante;
-
-   task Display is
-	pragma priority (4);
-   end Display;
-	
-
-   task Riesgos is
-	pragma priority(8);  		--Por qué 8 y no 5 ??????
-   end Riesgos;
 
     
 
@@ -59,7 +29,7 @@ package body add is
     ------------- body of tasks 
     -----------------------------------------------------------------------
 
-    
+    -- Aqui se escriben los cuerpos de las tareas  
 
     task body leeDistancia is
 
@@ -81,8 +51,9 @@ package body add is
 			medidasProtegido.setVelocidad(Current_V);
             			--Display_Speed (Current_V);
 
-            		d_seg:= Distance_Samples_Type(Current_V / 10 ) **2 ;
-			--d_seg:= d_seg*d_seg;
+            		--d_seg:= Distance_Samples_Type(Current_V / 10 ) **2 ;
+			d_seg:= Distance_Samples_Type(Current_V / 10 );
+			d_seg:= d_seg*d_seg;
 
 
 
@@ -94,6 +65,8 @@ package body add is
 				
 			elsif (medidasProtegido.getDistancia < d_seg) then 
 				sintomasProtegido.setDistancia(INSEGURA);
+			else 
+			      sintomasProtegido.setDistancia(SEGURA);
 				
 			end if;
 				
@@ -190,12 +163,14 @@ package body add is
 	Siguiente_instante_Display: Time;
 
 	begin
-	Siguiente_instante_Display:= Clock + To_Time_Span(0.1);
+	Siguiente_instante_Display:= Clock + To_Time_Span(1.0);
 	loop
+		Starting_Notice("Display");
+		
 		--VALORES NUMERICOS---
 		MDist:= medidasProtegido.getDistancia;
-		MVelo:= medidasProtegido.getVelocidad;
 		Display_Distance(MDist);
+		MVelo:= medidasProtegido.getVelocidad;
 		Display_Speed (MVelo);
 		
 		
@@ -228,6 +203,7 @@ package body add is
 			Put(" Cabeza inclinada");
 			New_Line;		
 		end if;
+		Finishing_Notice("Display");
 
 
 		delay until Siguiente_instante_Display;
@@ -235,7 +211,6 @@ package body add is
 	end loop;
 
 end Display;
-	
 
 task body Riesgos is
 
@@ -250,7 +225,7 @@ task body Riesgos is
 	begin
 	Siguiente_instante_Riesgos:= Clock + To_Time_Span(0.15);
 	loop	
-		
+		Starting_Notice("Riesgos");
 		--VALORES DE SINTOMAS---
 		if(sintomasProtegido.getDistancia= INSEGURA) then
 			SDistIn:=true;
@@ -305,11 +280,13 @@ task body Riesgos is
 
 		delay until Siguiente_instante_Riesgos;
 		Siguiente_instante_Riesgos:= Clock + To_Time_Span(0.15);
+		Finishing_Notice("Riesgos");
 	end loop;
 
 end Riesgos;
 	
-	
+
+
     ----------------------------------------------------------------------
     ------------- procedure para probar los dispositivos 
     ----------------------------------------------------------------------
@@ -367,6 +344,4 @@ begin
    Starting_Notice ("Programa Principal");
    Finishing_Notice ("Programa Principal");
 end add;
-
-
 
