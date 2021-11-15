@@ -50,7 +50,7 @@ package body add is
 	
 
    task Riesgos is
-	pragma priority(8);
+	pragma priority(8);  		--Por qué 8 y no 5 ??????
    end Riesgos;
 
     
@@ -59,7 +59,7 @@ package body add is
     ------------- body of tasks 
     -----------------------------------------------------------------------
 
-    -- Aqui se escriben los cuerpos de las tareas  
+    
 
     task body leeDistancia is
 
@@ -194,8 +194,8 @@ package body add is
 	loop
 		--VALORES NUMERICOS---
 		MDist:= medidasProtegido.getDistancia;
-		Display_Distance(MDist);
 		MVelo:= medidasProtegido.getVelocidad;
+		Display_Distance(MDist);
 		Display_Speed (MVelo);
 		
 		
@@ -231,7 +231,7 @@ package body add is
 
 
 		delay until Siguiente_instante_Display;
-		Siguiente_instante_Display:= Clock + To_Time_Span(0.1);
+		Siguiente_instante_Display:= Clock + To_Time_Span(1.0);
 	end loop;
 
 end Display;
